@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #c4c2c2; /* Light gray background for overall page */
+        }
+        header {
+            display: flex;
+            align-items: center; /* Vertically center the items in the header */
+            justify-content: center; /* Center the navigation items */
+            padding: 10px 20px; /* Add padding on all sides */
+            background-color: #123456; /* Dark blue background */
+            color: #ffffff; /* White text color */
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        #logo {
+            height: 50px;
+            width: 80px;
+            margin-right: auto; /* Pushes the logo to the left */
+        }
+        .nav-wrapper {
+            display: flex;
+            justify-content: center; /* Center the navigation items */
+            flex-grow: 1; /* Allows the wrapper to take available space */
+        }
+
+        nav {
+            display: flex;
+            gap: 20px; /* Space between navigation items */
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+        }
+        nav a:hover {
+            background-color: white;
+            color: #123456;
+            border-radius: 5px; /* Rounded corners for hover effect */
+        }
+        section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 10px;
+            margin-top: 60px; /* Give top margin to clear fixed header */
+            border: none; /* Dark blue border */
+            background-color: white; /* White background for contrast */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+            width: 80%; /* Adjust width based on design preference */
+            margin-left: auto; /* Center align section */
+            margin-right: auto; /* Center align section */
+            text-align: center; /* Text align section */
+        }
+        .content-container {
+            padding: 20px; /* Invisible padding around the content */
+        }
+        .content-container img {
+            max-width: 100%; /* Ensure images are responsive */
+            height: auto;
+            display: block;
+            margin: 0 auto; /* Center images horizontally */
+        }
+        /* Updated image styles for responsive design */
+        img {
+            width: 300%;
+            max-width: 800px;
+            height: auto;
+            margin-top: 20px;
+        }
+        img:hover {
+            transform: scale(1.05);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 400px; /* Contact Us form */
+        }
+        input, textarea {
+            padding: 20px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            background-color: #123456;
+            color: white;
+            cursor: pointer;
+        }
+        p {
+            font-size: 16px;
+            margin: 5px 0;  /* Adjusted paragraph margins */
+        }
+        .large-text {
+            font-size: 20px; /* Custom large text class */
+        }
+        #pricing {
+                text-align: center;
+                padding: 40px 20px;
+                background-color: #fff;
+                border: none;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                width: 80%;
+                margin: 40px auto;
+            }
+            .pricing-container {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+            }
+            .pricing-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 0 auto;
+                border: 2px solid #123456; /* Retain table border */
+                transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
+            }
+            .pricing-table th, .pricing-table td {
+                border: 1px solid #123456;
+                padding: 10px;
+                text-align: center;
+                color: #123456;
+            }
+            .pricing-table th {
+                background-color: #123456;
+                color: white;
+            }
+            .pricing-table td {
+                background-color: #f8f8f8;
+            }
+            .pricing-table tr:nth-child(even) td {
+                background-color: #eef;
+            }
+            .pricing-table tr:hover {
+                background-color: #ddf0ff;
+                cursor: pointer;
+                transform: scale(1.02); /* Slightly scale up on hover */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+            }
+            .pricing-table a {
+                color: #123456;
+                text-decoration: none;
+            }
+            .pricing-table a:hover {
+                text-decoration: underline;
+            }
+        #contact {
+            text-align: center;
+                padding: 40px 20px;
+                background-color: #fff;
+                border: none;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                width: 80%;
+                margin: 0px auto;
+            }
+            .contact-form-container {
+                max-width: 1000px;
+                min-width: 450px; /* Minimum width */
+                margin: 0 auto; /* Center the form */
+            }
+            .contact-form {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                padding: 20px; /* Add padding for better spacing */
+                border: 1px solid #ccc; /* Optional border for better */
+            }
+            .contact-form label {
+                margin-top: 10px;
+                text-align: left;
+                color: #123456;
+            }
+            .contact-form input, .contact-form textarea {
+                width: 100%;
+                padding: 10px;
+                margin-top: 5px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-sizing: border-box;
+                font-size: 16px;
+            }
+            .contact-form textarea {
+                height: 150px;
+                resize: vertical; /* Allows vertical resize but not horizontal */
+            }
+            .contact-form input[type="submit"] {
+                background-color: #123456;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                margin-top: 20px;
+                border-radius: 5px;
+            }
+            .contact-form input[type="submit"]:hover {
+                background-color: #0e2433;
+            }
+
+            footer {
+            background-color: #123456;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img id="logo" src="D:\Projects\site1\member wizard.jpg" alt="Logo">
+        <div class="nav-wrapper">
+            <nav>
+                <a href="#about">About</a>
+                <a href="#software-training">Software & Training</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#contact">Contact Us</a>
+        </nav>
+        </div>
+    </header>
+    <section id="intro">
+        <img src="D:\Projects\site1\about.jpg" alt="Intro Image" style="width:100%; height:auto;">
+        <div class="content-container">
+            <p class="large-text"><b>MEMBER WIZARD</b></p>
+            <p>Member Management Made Easy</p>
+            <p>Welcome to our website! Here you'll find information about our services and offerings.</p>
+        </div>
+    </section>
+    <section id="about">
+            <h1>About</h1>
+            <p>We Are The PNG Franchisee For Member Wizard™ Software In Papua New Guinea.</p>
+            <a href="https://brianriches.com.pg/" class="large-text-link">
+            <p class="large-text">BRIAN RICHES LIMITED</p>
+        </a>
+        <img src="D:\Projects\site1\brianriches.jpg" alt="About Us">
+        <div class="content-container">
+        <p>Manage your member based organisation, simplify the members renewal process and have your members information at your fingertips.
+           Automate and simplify your membership tasks. Membership Wizard™ can help your Association be compliant with the latest legislation.</p>
+        <p class="large-text">ARE YOU AN ASSOCIATION REGISTERED WITH IPA AND IRC?</p>
+        <p>Be aware!</p>
+        <p>In 2023 Legislation changed and the reporting requirements for Associations are more complicated than before.
+            Find out what can be done to comply with the new legislation.</p>
+        <p class="large-text">ARE YOU A PRESIDENT, SECRETARY, TREASURER OR OTHER OFFICE BEARER IN AN ASSOCIATION?</p>
+        <p>Stay informed!</p>
+        <p>Protect your reputational integrity.Your legal liability as an office bearer has changed significantly.</p>
+        <p class="large-text">IS YOUR ASSOCIATION OPERATIONALLY UP TO DATE?</p>
+        <p>If not, we can help to ensure that important matters such as your Constitution, membership and subscription listings, financial records, statutory documentation and reporting is current, as required by law.
+           We are the PNG franchisee for Member Wizard ™ software, which can be customised to assist you with all your Association office housekeeping and make your organisation much more efficient.
+           Member Wizard ™ has been developed as a social enterprise application to assist committees of Not for Profit groups to manage their organisations.</p>
+        <p class="large-text">ARE YOU MANAGING SUCCESSFULLY A CHEQUE-LESS ADMINISTRATION OF YOUR FUNDS?</p>
+        <p>We can also advise on the level of administrative manning required for your Association to be efficient, accountable and compliant.</p>
+        </div>
+    </section>
+    <section id="software-training">
+        <h1>Software and Training</h1>
+        <img src="D:\Projects\site1\software2.jpg" alt="Software and Training">
+        <div class="content-container">
+        <p>It is a valuable management tool for presidents, treasurers, secretaries, membership secretaries and event organisers.
+            The software can help organisations grow and maintain their membership by making it easy for members to interact through links directly from your web page. It is free to use for groups up to 30 members and for larger organisations rates are affordable.
+            Where necessary, we can carry out training for Association office bearers, assess and re-write your Constitution and advise on the necessary back-office procedures suitable for the size and complexity of your Association.
+            We also provide assistance and training in reputation management, membership growth, retention and value enhancement strategies, accounting and compliance.</p>
+        </div>
+    </section>
+    <section id="pricing">
+        <h1>Pricing Plans</h1>
+        <table class="pricing-table">
+        <thead>
+            <tr>
+                <th>Plan</th>
+                <th>Max. Members</th>
+                <th>Annual Pre-Paid Subscription</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Friends</td>
+                <td>Up to 30</td>
+                <td>Free</td>
+            </tr>
+            <tr>
+                <td>Smaller Clubs</td>
+                <td>100</td>
+                <td>K770</td>
+            </tr>
+            <tr>
+                <td>Larger Clubs</td>
+                <td>200</td>
+                <td>K1,300</td>
+            </tr>
+            <tr>
+                <td>Community</td>
+                <td>400</td>
+                <td>K1,900</td>
+            </tr>
+            <tr>
+                <td>Network</td>
+                <td>1000</td>
+                <td>K3,800</td>
+            </tr>
+            <tr>
+                <td>Large Network</td>
+                <td>1500</td>
+                <td>K5,000</td>
+            </tr>
+            <tr>
+                <td>Association</td>
+                <td>2000</td>
+                <td>K6,400</td>
+            </tr>
+            <tr>
+                <td>Large Association</td>
+                <td>2000+</td>
+                <td><a href="#contact">Talk to us</a></td>
+            </tr>
+        </tbody>
+        </table>
+    </section>
+    <section id="contact">
+        <h1>Contact Us</h1>
+        <div class="contact-form-container">
+        <form class="contact-form" action="#" method="post">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" required>
+    
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" required>
+    
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" maxlength="500" placeholder="Type your message here (up to 500 characters)" required></textarea>
+    
+            <input type="submit" value="Send Message">
+        </form>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2024 My Website</p>
+    </footer>
+</body>
+</html>
